@@ -1,0 +1,35 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+}
+#board {
+    display: inline-block;
+    margin-top: 20px;
+    border: 2px solid #999;
+    padding: 20px;
+    text-align: center;
+}
+#board button {
+    margin: 5px;
+    padding: 10px;
+    border-radius: 5px;
+}
+.selected {
+    box-shadow: 3px 3px 5px 0px rgba(0, 0, 0, 0.5);
+    position: relative;
+    top: -2px;
+    left: -2px;
+}
+#board button > span:before {
+    content: "; ";
+}
+#board button > span:first-child:before {
+    content: "";
+}
+.complete {
+    opacity: 0.5;
+}
+.complete:before {
+    content: "✓ ";
+}
+
