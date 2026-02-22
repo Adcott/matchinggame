@@ -1,11 +1,19 @@
 body {
     font-family: Arial, sans-serif;
     margin: 20px;
+    background: #aaa;
+    color: #000;
+}
+button {
+    background: #eee;
+    color: #000;
+    border: 2px outset #ccc;
+    border-radius: 5px;
 }
 #board {
     display: inline-block;
     margin-top: 20px;
-    border: 2px solid #999;
+    border: 2px solid rgba(255, 255, 255, 0.2);
     padding: 20px;
     text-align: center;
 }

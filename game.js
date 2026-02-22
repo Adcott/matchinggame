@@ -5,27 +5,147 @@ const GameData = {
     clues: [
         {
             title: 'numbers written as words',
-            items: ['one', 'two', 'three', 'four', 'five'],
-        },
-
-        {
-            title: 'made-up words',
-            items: ['foo', 'baar', 'baz', 'flang', 'chust'],
+            items: ['one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight'],
         },
 
         {
             title: 'colours of the rainbow',
-            items: ['red', 'orange', 'yellow', 'green', 'blue'],
+            items: ['red', 'orange', 'yellow', 'green', 'blue', 'indigo', 'violet'],
         },
 
         {
-            title: 'common animals',
-            items: ['cat', 'dog', 'mouse', 'cow', 'pig'],
+            title: 'animals',
+            items: ['cat', 'dog', 'mouse', 'cow', 'pig', 'horse'],
         },
 
         {
-            title: 'common fruits',
+            title: 'fruits',
             items: ['apple', 'banana', 'cherry', 'grape', 'pear'], // 'orange' is already used as a colour - should throw an error for duplicate items
+        },
+
+        {
+            title: 'vegetables',
+            items: ['carrot', 'broccoli', 'spinach', 'potato', 'onion', 'cucumber'],
+        },
+
+        {
+            title: 'programming languages',
+            items: ['javascript', 'python', 'java', 'c++', 'ruby', 'go'],
+        },
+
+        {
+            title: 'web browsers',
+            items: ['chrome', 'firefox', 'safari', 'edge', 'opera'],
+        },
+
+        {
+            title: 'countries',
+            items: ['ukraine', 'canada', 'mexico', 'france', 'germany', 'italy'],
+        },
+
+        {
+            title: 'allergies',
+            items: ['pollen', 'dust', 'nuts', 'shellfish', 'gluten', 'dairy'],
+        },
+
+        {
+            title: 'christmas things',
+            items: ['tree', 'lights', 'presents', 'santa', 'reindeer', 'stocking', 'mince pie', 'carol singers'],
+        },
+
+        {
+            title: 'planets',
+            items: ['mercury', 'venus', 'earth', 'mars', 'jupiter', 'saturn', 'uranus', 'neptune'],
+        },
+
+        {
+            title: 'shapes',
+            items: ['circle', 'square', 'triangle', 'rectangle', 'pentagon', 'hexagon', 'octagon'],
+        },
+
+        {
+            title: 'hair styles',
+            items: ['bob', 'pixie', 'mohawk', 'afro', 'dreadlocks', 'bun', 'ponytail'],
+        },
+
+        {
+            title: 'British supermarkets',
+            items: ['tesco', 'sainsburys', 'waitrose', 'asda', 'morrisons', 'aldi', 'lidl', 'iceland'],
+        },
+
+        {
+            title: 'English cities',
+            items: ['london', 'manchester', 'birmingham', 'leeds', 'liverpool', 'newcastle', 'sheffield', 'bristol'],
+        },
+
+        {
+            title: 'dinosaurs',
+            items: ['tyrannosaurus', 'triceratops', 'velociraptor', 'stegosaurus', 'brachiosaurus', 'pterodactyl'],
+        },
+
+        {
+            title: 'mythical creatures',
+            items: ['dragon', 'unicorn', 'phoenix', 'griffin', 'mermaid', 'centaur', 'hobbit'],
+        },
+
+        {
+            title: 'musical instruments',
+            items: ['guitar', 'piano', 'drums', 'violin', 'saxophone', 'trumpet', 'flute'],
+        },
+
+        {
+            title: 'star wars movies',
+            items: ['a new hope', 'the empire strikes back', 'return of the jedi', 'the phantom menace', 'attack of the clones', 'revenge of the sith', 'the force awakens', 'the last jedi', 'the rise of skywalker'],
+        },
+
+        {
+            title: 'harry potter villains',
+            items: ['voldemort', 'bellatrix lestrange', 'lucius malfoy', 'draco malfoy', 'severus snape', 'dolores umbridge', 'barty crouch jr', 'fenrir greyback'],
+        },
+
+        {
+            title: 'types of pasta',
+            items: ['spaghetti', 'penne', 'fusilli', 'ravioli', 'tortellini', 'linguine'],
+        },
+
+        {
+            title: 'star signs',
+            items: ['aries', 'taurus', 'gemini', 'cancer', 'leo', 'virgo', 'libra', 'scorpio', 'sagittarius', 'capricorn', 'aquarius', 'pisces'],
+        },  
+
+        {
+            title: "men's names",
+            items: ['john', 'michael', 'david', 'james', 'robert', 'william', 'mark', 'richard'],
+        },
+
+        {
+            title: 'video games',
+            items: ['minecraft', 'fortnite', 'call of duty', 'league of legends', 'world of warcraft', 'overwatch', 'apex legends'],
+        },
+
+        {
+            title: 'types of cheese',
+            items: ['cheddar', 'mozzarella', 'parmesan', 'gouda', 'brie', 'camembert', 'feta'],
+        },
+
+        {
+            title: 'car brands',
+            items: ['toyota', 'ford', 'honda', 'skoda', 'mercedes', 'bmw', 'audi', 'volkswagen'],
+        },
+
+        {
+            title: 'body parts',
+            items: ['head', 'shoulders', 'knees', 'toes', 'eyes', 'ears', 'mouth', 'nose'],
+        },
+
+        {
+            title: 'medical tv shows',
+            items: ['grey\'s anatomy', 'casualty', 'house', 'the good doctor', 'scrubs', 'bones'],
+        },
+
+        {
+            title: 'natural disasters',
+            items: ['earthquake', 'hurricane', 'tornado', 'flood', 'wildfire', 'volcano', 'tsunami'],
         },
     ],
 };
@@ -36,6 +156,7 @@ const Game = {
     categoryColors: 0, // a counter to keep track of how many categories have been created, used to generate new colors for categories
     boardElem: document.getElementById('board'), // the main game board element where items are displayed and moved around
     statusElem: document.getElementById('status'), // the status element where messages about completed categories and game completion are displayed
+    colorSeed: Math.floor(Math.random() * 360), // random number between 0 and 360 to add some variation to the generated colors each time the game is played
 
     // Moves all child nodes of the given node to the target node
     // removes the original node from the board and assigns a background color to the target if it is not already a category
@@ -80,7 +201,7 @@ const Game = {
             if (this.categoryComplete(nodeElem)) {
                 let message = document.createElement('div');
                 message.style.marginTop = '5px';
-                message.innerHTML = `Completed: <span style="padding: 5px; background-color: ${nodeElem.style.backgroundColor}">${this.findCategory(nodeElem)}</span>`;
+                message.innerHTML = `Completed: <span style="padding: 5px; color: #000; background-color: ${nodeElem.style.backgroundColor}">${this.findCategory(nodeElem)}</span>`;
                 this.statusElem.appendChild(message);
                 nodeElem.classList.add('complete');
             }
@@ -181,7 +302,7 @@ const Game = {
         const pos = this.categoryColors ^ mostSigBit;
         const spacing = 1 / mostSigBit;
         const offset = 1 / (mostSigBit << 1);
-        let hue = (pos * spacing + offset) * 360;
+        let hue = ((pos * spacing + offset) * 360 + this.colorSeed) % 360;
         hue = (this.categoryColors % 5) ? hue : 360 - hue; // reverse every 5th color
         const sat = (this.categoryColors % 3)*15 + 60; // vary saturation between 60%, 75% and 90% to make them more distinguishable
         const light = (this.categoryColors % 2)*15 + 60; // vary lightness between 60% and 75% to make them more distinguishable
