@@ -156,7 +156,9 @@ const Game = {
     categoryColors: 0, // a counter to keep track of how many categories have been created, used to generate new colors for categories
     boardElem: document.getElementById('board'), // the main game board element where items are displayed and moved around
     statusElem: document.getElementById('status'), // the status element where messages about completed categories and game completion are displayed
+    wrongGuessElem: document.getElementById('wrong-guesses'), // the element where the number of wrong guesses is displayed
     colorSeed: Math.floor(Math.random() * 360), // random number between 0 and 360 to add some variation to the generated colors each time the game is played
+    wrongGuesses: 0, // a counter to keep track of how many wrong guesses the player has made
 
     // Moves all child nodes of the given node to the target node
     // removes the original node from the board and assigns a background color to the target if it is not already a category
@@ -216,8 +218,8 @@ const Game = {
             return;
         }
         // if the clicked item does not belong to the same category as the currently selected item, deselect the currently selected item and select the clicked item
-        // TODO: could add some visual feedback here to indicate that the items do not match and maybe a counter.
         this.deselect(this.matchAgainst);
+        this.updateWrongGuesses();
     },
 
     // creates the game board by shuffling all items from all categories and creating a button for each item.
@@ -265,6 +267,8 @@ const Game = {
             itemElem.appendChild(spanElem);
             this.boardElem.appendChild(itemElem);
         });
+        // set wrong guesses to 0
+        this.updateWrongGuesses(0);
     },
 
     // removes the 'selected' class from the given node and sets the currently selected item to null
@@ -320,6 +324,11 @@ const Game = {
         nodeElem.classList.add('selected');
         this.matchAgainst = nodeElem;
     },
+
+    updateWrongGuesses: function (n) {
+        let output = (n !== undefined) ? n : ++this.wrongGuesses;
+        this.wrongGuessElem.innerText = `Wrong guesses: ${output}`;
+    }
 }
 
 Game.createBoard();
