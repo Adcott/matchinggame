@@ -33,7 +33,7 @@ const GameData = {
 // Game Logic - do not edit below this line unless you are prepared to break the game!
 const Game = {
     matchAgainst: null, // the currently selected item to match against
-    categoryColors: 0, // keeps track of the colors assigned to categories to ensure easily distinguishable colours
+    categoryColors: 0, // a counter to keep track of how many categories have been created, used to generate new colors for categories
     boardElem: document.getElementById('board'), // the main game board element where items are displayed and moved around
     statusElem: document.getElementById('status'), // the status element where messages about completed categories and game completion are displayed
 
