@@ -6,7 +6,7 @@ const GameData = {
         },
         {
             title: 'made-up words',
-            items: ['foo', 'bar', 'baz', 'flang', 'chust'],
+            items: ['foo', 'baar', 'baz', 'flang', 'chust'],
         },
         {
             title: 'colours of the rainbow',
@@ -46,14 +46,6 @@ const Game = {
         return categoryLength == expectedLength;
     },
 
-    checkDuplicateItems: function () {
-        const allItems = GameData.clues.reduce((acc, category) => acc.concat(category.items), []);
-        const duplicates = allItems.filter((item, index) => allItems.indexOf(item) !== index);
-        if (duplicates.length > 0) {
-            throw 'Duplicate items found: ' + duplicates.join(', ');
-        }
-    },
-
     checkMatch: function (nodeElem) {
         if (this.categoryComplete(nodeElem)) return;
         if (!this.matchAgainst) {
@@ -85,7 +77,26 @@ const Game = {
 
     createBoard: function () {
         try {
-            this.checkDuplicateItems();
+            // Check for duplicate items across categories before creating the board
+            const allItems = GameData.clues.reduce((acc, category) => acc.concat(category.items), []);
+            const duplicates = allItems.filter((item, index) => allItems.indexOf(item) !== index);
+            if (duplicates.length > 0) {
+                throw 'Duplicate items found: ' + duplicates.join(', ');
+            }
+
+            // Check that each category has a unique title
+            const titles = GameData.clues.map(category => category.title);
+            const duplicateTitles = titles.filter((title, index) => titles.indexOf(title) !== index);
+            if (duplicateTitles.length > 0) {
+                throw 'Duplicate category titles found: ' + duplicateTitles.join(', ');
+            }
+
+            // Check that each category has more than one item
+            for (const category of GameData.clues) {
+                if (category.items.length < 2) {
+                    throw `Category "${category.title}" must have at least 2 items.`;
+                }
+            }
         } catch (e) {
             this.boardElem.innerText = e;
             return;
