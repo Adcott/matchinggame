@@ -78,10 +78,9 @@ const Game = {
                 message.innerHTML = '<b>Congratulations! You completed the game!</b>';
                 this.statusElem.appendChild(message);
             }
-            return true;
+            return;
         }
         this.deselect(this.matchAgainst);
-        return false;
     },
 
     createBoard: function () {
