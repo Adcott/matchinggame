@@ -60,7 +60,8 @@ const Game = {
             this.addToCategory(this.matchAgainst, nodeElem);
             if (this.categoryComplete(nodeElem)) {
                 let message = document.createElement('div');
-                message.innerText = `Completed: ${this.findCategory(nodeElem)}`;
+                message.style.marginTop = '5px';
+                message.innerHTML = `Completed: <span style="padding: 5px; background-color: ${nodeElem.style.backgroundColor}">${this.findCategory(nodeElem)}</span>`;
                 this.statusElem.appendChild(message);
                 nodeElem.classList.add('complete');
             }
